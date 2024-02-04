@@ -29,6 +29,7 @@ with open('model.pickle', 'rb') as handle:
     clf = pickle.load(handle)
 
 
+
 while True:
     ret, frame = cap.read()
     if not ret:
@@ -37,7 +38,7 @@ while True:
     img_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     results = hands.process(img_rgb)
 
-
+    
     if results.multi_hand_landmarks is not None:
         for landmarks in results.multi_hand_landmarks:
             mp_drawing.draw_landmarks(frame, 
@@ -57,14 +58,38 @@ while True:
             y_pred = np.argmax(clf.predict(X.reshape(1, -1)))
             print(classes[y_pred])
 
+
+            h, w, c = frame.shape
+
+            x_max = 0
+            y_max = 0
+            x_min = w
+            y_min = h
+
+            for landmark in landmarks.landmark:
+                x, y = int(landmark.x * w), int(landmark.y * h)
+                if x > x_max:
+                    x_max = x
+                if x < x_min:
+                    x_min = x
+                if y > y_max:
+                    y_max = y
+                if y < y_min:
+                    y_min = y
+
+            padding = 40
+            cv2.rectangle(frame, (x_min-padding, y_min-padding), (x_max+padding, y_max+padding), (255, 0, 0), 5)
+
             frame = cv2.putText(frame, 
-                                classes[y_pred], 
-                                (50, 50), 
-                                cv2.FONT_HERSHEY_SIMPLEX,
-                                2, 
-                                (0, 255, 0), 
-                                2, 
-                                cv2.LINE_AA)
+                classes[y_pred], 
+                (x_min-padding, y_min-padding-10), 
+                cv2.FONT_HERSHEY_SIMPLEX,
+                2, 
+                (255, 0, 0), 
+                2, 
+                cv2.LINE_AA)
+
+
 
     cv2.imshow('frame', frame)
 

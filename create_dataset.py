@@ -8,7 +8,7 @@ import pickle
 
 classes = ['paper', 'rock', 'scissors']
 
-IMG_SIZE = 100
+IMG_SIZE = 200
 
 cap = cv2.VideoCapture(0)
 if cap.isOpened() == False:
