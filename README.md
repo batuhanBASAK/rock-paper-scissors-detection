@@ -1,3 +1,3 @@
 # rock-paper-scissors-detection
 
-This project detects rock, paper, and scissors in real time. The hands are detected by using mediapipe model. The landmarks of hand are sent to another model which is a Random Forest Classifier in order to classify the hand. I inspired this idea from the youtuber [ComputerVisionEngineer](https://www.youtube.com/@ComputerVisionEngineer). The link of the video is [here](https://www.youtube.com/watch?v=MJCSjXepaAM)
+This project detects rock, paper, and scissors in real time. The hands are detected by using mediapipe model. The landmarks of hand are sent to another model which is a Random Forest Classifier in order to classify the hand. I inspired this idea from the youtuber [ComputerVisionEngineer](https://www.youtube.com/@ComputerVisionEngineer). The link of the video that I watched is [here](https://www.youtube.com/watch?v=MJCSjXepaAM).

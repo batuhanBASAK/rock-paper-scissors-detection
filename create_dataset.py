@@ -6,7 +6,7 @@ import numpy as np
 import pickle
 
 
-classes = ['rock', 'scissors', 'paper']
+classes = ['paper', 'rock', 'scissors']
 
 IMG_SIZE = 100
 
